@@ -20,12 +20,18 @@ require('./config/db.connection.js')
 // import places router
 const placesRouter = require('./routes/places.js')
 
+const cors = require("cors")
+const morgan = require("cors")
+
 
 //MIDDLEWARE
 app.use(express.urlencoded({extended:true}))
 app.use(express.json()); // parse json bodies
 
-app.use('/places', placesRouter)
+app.use(cors()); // to minimize cors errors, open access to all origins
+app.use(morgan("dev")); // logging for development
+
+app.use('/explore', placesRouter)
 
 //ROUTES
 
@@ -35,5 +41,3 @@ app.get("/", (req, res) => {
 
 //LISTENER
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
-
-//test
