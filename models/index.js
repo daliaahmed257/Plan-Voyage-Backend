@@ -1,3 +1,5 @@
 module.exports = {
-    Place: require('./Place')
+    Place: require('./Place'),
+    Trip: require('./Trip'),
+    User: require('./User')
 }

@@ -19,6 +19,7 @@ require('./config/db.connection.js')
 
 // import places router
 const placesRouter = require('./routes/places.js')
+const tripsRouter = require('./routes/trips.js')
 
 const cors = require("cors")
 const morgan = require("cors")
@@ -32,12 +33,15 @@ app.use(cors()); // to minimize cors errors, open access to all origins
 app.use(morgan("dev")); // logging for development
 
 app.use('/explore', placesRouter)
+app.use('/mytrips', tripsRouter)
+
 
 //ROUTES
-
 app.get("/", (req, res) => {
     res.send("hello world")
 })
+
+
 
 //LISTENER
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
