@@ -14,19 +14,13 @@ const app = express();
 // start the mongoose db connection
 require('./config/db.connection.js')
 
-require('./config/passport.js')
-
-// import places router
+// import routers
 const placesRouter = require('./routes/places.js')
 const tripsRouter = require('./routes/trips.js')
+const AuthRouter = require('./routes/AuthRouter')
 
 const cors = require("cors")
 const morgan = require("morgan")
-
-var session = require('express-session')
-var passport = require('passport')
-
-
 
 //MIDDLEWARE
 app.use(express.urlencoded({extended:true}))
@@ -35,29 +29,16 @@ app.use(express.json()); // parse json bodies
 app.use(cors()); // to minimize cors errors, open access to all origins
 app.use(morgan("dev")); // logging for development
 
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(function (req, res, next) {
-    res.locals.user = req.user;
-    next();
-  });
 
 app.use('/explore', placesRouter)
 app.use('/mytrips', tripsRouter)
+app.use('/auth', AuthRouter)
 
 
 //ROUTES
 app.get("/", (req, res) => {
     res.send("hello world")
 })
-
 
 
 //LISTENER
