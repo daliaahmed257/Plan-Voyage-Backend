@@ -19,4 +19,10 @@ tripsCtrl.create)
 //TRIPS SHOW ROUTE
 router.get("/:id", tripsCtrl.show)
 
+//TRIPS DELETE ROUTE
+router.delete("/:id", tripsCtrl.delete)
+
+//TRIPS UPDATE ROUTE
+router.put("/:id", tripsCtrl.update)
+
 module.exports = router

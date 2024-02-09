@@ -5,7 +5,7 @@ const {Trip} = require('../models')
 //Trips index action
 const index = async (req, res, next) => {
     try {
-        //get all places
+        //get all trips
         res.json(await Trip.find({}));
     } catch (error) {
         //send error
@@ -16,7 +16,6 @@ const index = async (req, res, next) => {
 //Trips create action
 const create = async (req, res, next) => {
     try {
-        //get all places
         res.json(await Trip.create(req.body));
     } catch (error) {
         //send error
@@ -27,7 +26,6 @@ const create = async (req, res, next) => {
 //Trips show action
 const show = async (req, res, next) => {
     try {
-        //get all places
         res.json(await Trip.findById(req.params.id));
     } catch (error) {
         //send error
@@ -35,8 +33,28 @@ const show = async (req, res, next) => {
     }
 }
 
+//Trips delete action
+const destroy = async (req, res, next) => {
+    try {
+        res.json(await Trip.findByIdAndDelete(req.params.id));
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+//Trips update action
+const update = async (req, res, next) => {
+    try {
+        res.json(await Trip.findByIdAndUpdate(req.params.id, req.body, {new:true}))
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
 module.exports = {
     index,
     create,
-    show
+    show,
+    delete: destroy,
+    update
 }
