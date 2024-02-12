@@ -1,12 +1,14 @@
 //DEPENDENCIES
 const express = require('express')
 const {Trip} = require('../models')
+const {User} = require('../models')
 
 //Trips index action
 const index = async (req, res, next) => {
     try {
-        //get all trips
-        res.json(await Trip.find({}));
+        const userId =req.params.id
+        const trips = await Trip.find({ user: userId });
+        res.json(trips);
     } catch (error) {
         //send error
         res.status(400).json(error)
@@ -15,8 +17,11 @@ const index = async (req, res, next) => {
 
 //Trips create action
 const create = async (req, res, next) => {
+    console.log(req.body)
     try {
-        res.json(await Trip.create(req.body));
+        const userId = req.body.user;
+        const tripData = { ...req.body, user: userId }
+        res.json(await Trip.create(tripData));
     } catch (error) {
         //send error
         res.status(400).json(error)

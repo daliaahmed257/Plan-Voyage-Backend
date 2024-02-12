@@ -8,7 +8,8 @@ const tripsCtrl = require('../controllers/trips')
 //ROUTES
 
 //TRIPS INDEX ROUTE
-router.get("/", tripsCtrl.index)
+router.get("/user/:id", tripsCtrl.index)
+
 
 //TRIPS CREATE ROUTE
 router.post("/", 
