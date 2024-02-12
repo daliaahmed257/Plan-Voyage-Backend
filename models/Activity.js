@@ -6,10 +6,11 @@ const ActivitySchema = new Schema({
     activity: String,
     link: String,
     time: Date,
-    Trip: {
+    date: Date,
+    trip: {
         type: Schema.Types.ObjectId,
         ref: 'Trip'
     }
 })
 
-module.export = mongoose.model("Activity", ActivitySchema)
+module.exports = mongoose.model("Activity", ActivitySchema)

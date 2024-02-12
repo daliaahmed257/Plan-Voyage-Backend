@@ -18,6 +18,7 @@ require('./config/db.connection.js')
 const placesRouter = require('./routes/places.js')
 const tripsRouter = require('./routes/trips.js')
 const AuthRouter = require('./routes/AuthRouter')
+const ActivityRouter = require('./routes/activities.js')
 
 const cors = require("cors")
 const morgan = require("morgan")
@@ -33,6 +34,7 @@ app.use(morgan("dev")); // logging for development
 app.use('/explore', placesRouter)
 app.use('/mytrips', tripsRouter)
 app.use('/auth', AuthRouter)
+app.use('/mytrips', ActivityRouter)
 
 
 //ROUTES
