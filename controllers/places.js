@@ -26,7 +26,7 @@ const create = async (req, res, next) => {
 //Places show action
 const show = async (req, res, next) => {
     try {
-        //get all places
+        //get one place
         res.json(await Place.findById(req.params.id));
     } catch (error) {
         //send error
