@@ -17,7 +17,7 @@ const index = async (req, res, next) => {
 
 //Trips create action
 const create = async (req, res, next) => {
-    console.log(req.body)
+    console.log('trip create')
     try {
         const userId = req.body.user;
         const tripData = { ...req.body, user: userId }

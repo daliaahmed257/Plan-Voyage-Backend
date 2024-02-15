@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const ActivitySchema = new Schema({
     activity: String,
     link: String,
-    time: Date,
+    time: String,
     date: Date,
     trip: {
         type: Schema.Types.ObjectId,

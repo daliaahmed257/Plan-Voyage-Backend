@@ -3,6 +3,24 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 //MODELS
+
+const StaySchema = new Schema({
+    name: String,
+    link: String,
+    startDate: Date,
+    endDate: Date
+})
+
+const FlightSchema = new Schema({
+    airline: String,
+    flightNum: String,
+    depCity: String,
+    arrCity: String,
+    date: Date,
+    depTime: String,
+    arrTime: String
+})
+
 const TripSchema = new Schema({
     country: {
         type: String,
@@ -12,7 +30,9 @@ const TripSchema = new Schema({
         type: String,
         required: true
     },
-    image: String,
+    image: {
+        type: String,
+    },
     startDate: {
         type: Date,
         // required: true
@@ -21,6 +41,8 @@ const TripSchema = new Schema({
         type: Date,
         // required: true
     },
+    stay: [StaySchema],
+    flights: [FlightSchema],
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -31,6 +53,7 @@ const TripSchema = new Schema({
 }, {
     timestamps: true
 });
+
 
 module.exports = mongoose.model("Trip", TripSchema);
 

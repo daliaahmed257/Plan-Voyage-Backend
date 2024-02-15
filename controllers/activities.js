@@ -7,7 +7,6 @@ const {Activity} = require('../models')
 const index = async (req, res, next) => {
     try {
         const tripId =req.params.tripId
-        console.log('hello')
         const date = new Date(req.params.date)
         const formattedDate = date.toISOString().split('T')[0];
         console.log(formattedDate)

@@ -19,6 +19,8 @@ const placesRouter = require('./routes/places.js')
 const tripsRouter = require('./routes/trips.js')
 const AuthRouter = require('./routes/AuthRouter')
 const ActivityRouter = require('./routes/activities.js')
+const stayRouter = require('./routes/stay.js')
+const flightRouter = require('./routes/flights.js')
 
 const cors = require("cors")
 const morgan = require("morgan")
@@ -30,11 +32,13 @@ app.use(express.json()); // parse json bodies
 app.use(cors()); // to minimize cors errors, open access to all origins
 app.use(morgan("dev")); // logging for development
 
-
+app.use('/mytrips', stayRouter)
+app.use('/mytrips', flightRouter)
 app.use('/explore', placesRouter)
 app.use('/mytrips', tripsRouter)
 app.use('/auth', AuthRouter)
 app.use('/mytrips', ActivityRouter)
+
 
 
 //ROUTES
